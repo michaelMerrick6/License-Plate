@@ -10,14 +10,11 @@ struct details {
 	string model;
 	string ticketStrategy;
 	string violation;
-
-
 };
 
 class ocSystem {
 
 private:
-	string plate;
 	unordered_map < string, details> plateTable; // key  , index
 	string fileName = "license_plates.txt";
 public:
