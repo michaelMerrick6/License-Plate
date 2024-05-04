@@ -10,9 +10,13 @@ using namespace std;
 struct VehicleDetails {
     string color;
     string make;
-    string model;
+    string model; 
+};
+
+struct violationDetails {
     string ticketStrategy;
     string violation;
+    string date;
     int ticketCount = 0;
 };
 
