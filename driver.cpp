@@ -52,6 +52,7 @@ public:
         cin >> details.ticketStrategy;
         cout << "Violation: ";
         cin >> details.violation;
+        violations.push_back(violation);
         details.ticketCount++;
         plateTable[plate] = details;
         cout << "Plate added successfully." << endl;
