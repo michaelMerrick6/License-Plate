@@ -11,7 +11,7 @@ struct VehicleDetails {
     string color;
     string make;
     string model; 
-vector<violationDetails> violation;
+vector<violationDetails> violations;
 };
 
 struct violationDetails {
