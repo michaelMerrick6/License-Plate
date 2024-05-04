@@ -7,6 +7,17 @@
 
 using namespace std;
 
+// Custom hashing function to reduce collisions
+struct PlateHash {
+    size_t operator()(const string& plate) const {
+        size_t hash = 0;
+        for (char c : plate) {
+            hash = (hash * 31) + c; // Using a prime number multiplier for better distribution
+        }
+        return hash;
+    }
+};
+
 struct VehicleDetails {
     string color;
     string make;
@@ -23,9 +34,16 @@ struct violationDetails {
 
 class OCSystem {
 private:
-    unordered_map<string, VehicleDetails> plateTable;
-    const string fileName = "license_plates.txt";
+    unordered_map<string, VehicleDetails, PlateHash> plateTable; // Using custom hashing function
+const string fileName = "licenseplate.txt"; 
 
+void resizeTable(size_t newBucketCount) {
+    unordered_map<string, VehicleDetails, PlateHash> newPlateTable(newBucketCount);
+    for (const auto& entry : plateTable) {
+        newPlateTable[entry.first] = entry.second; // Rehash existing entries into the new table
+    }
+    plateTable = move(newPlateTable); // Move new table into place
+}
 public:
     OCSystem() {
         loadFromFile();
@@ -35,6 +53,7 @@ public:
         return plateTable.find(plate) != plateTable.end();
     }
 
+   
     void addPlate(const string& plate) {
         if (searchPlate(plate)) {
             cout << "Plate already exists in the system." << endl;
@@ -52,10 +71,16 @@ public:
         cin >> details.ticketStrategy;
         cout << "Violation: ";
         cin >> details.violation;
-        violations.push_back(violation);
         details.ticketCount++;
         plateTable[plate] = details;
         cout << "Plate added successfully." << endl;
+
+        // Check the load factor
+        double loadFactor = static_cast<double>(plateTable.size()) / plateTable.bucket_count();
+        if (loadFactor > 0.5) {
+            resizeTable(plateTable.bucket_count() * 2); // Double the size of the hash table
+        }
+
         saveToFile();
     }
 
