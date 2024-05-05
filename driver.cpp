@@ -1,3 +1,62 @@
+
+#include <iostream>
+#include <vector>
+#include <unordered_map>
+using namespace std;
+
+struct violation {
+	string violationInfo;
+	int time;
+
+};
+
+struct vehicle {
+	string color;
+	string model;
+	string brand;
+	vector<violation> violations;
+};
+
+class plate {
+private:
+	unordered_map<string, vehicle> plateTable;
+	const string fileName = "license_plates.txt";
+public:
+	bool search(string plate){
+		return plateTable.find(plate) != plateTable.end();
+	}
+	void display(string plate){
+		if (search(plate)) {
+			cout << "Error plate not in system";
+			system("pause");
+			menu();
+	}
+		
+
+	}
+	void addViolation(){
+	
+	}
+	void saveToFile() const {}
+	void loadFromFile() {}
+	void menu(){}
+
+
+};
+
+int main() {
+
+}
+
+
+
+
+
+
+
+
+
+
 /*#include <iostream>
 #include <string>
 #include <unordered_map>
