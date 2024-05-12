@@ -4,7 +4,7 @@
 using namespace std;
 
 
-enum class ViolationType {
+enum class ViolationType : uint8_t {
     SPEEDING,
     RUNNING_RED_LIGHT,
     DRIVING_UNDER_INFLUENCE,

@@ -20,46 +20,61 @@ string LicensePlate::getPlateNumber() const
 }
 
 
-// Method to check if the plate number is valid
-bool LicensePlate::isValid() const
-{
-	if (plateNumber.length() > 7)
-		return false;
-
-	return true;
-}
-
-
 void LicensePlate::setOwnerName(const string& name)
 {
 	ownerName = name;
 }
 
-string LicensePlate::getOwerName() const
+
+string LicensePlate::getOwnerName() const
 {
 	return ownerName;
 }
 
-void LicensePlate::display()
+
+void LicensePlate::displayInformation()
 {
 	cout << "\n\tLicense number  : " << plateNumber;
 	cout << "\n\tOwner name      : " << ownerName;
 	cout << "\n\tViolation Record: ";
 	
 	if (numOfTicket == 0)
-		cout << "\n\t\tNo Recorded Violation";
+		cout << "\n\t\tNo Violation";
 	else
 	{
 		for (int i = 0; i < numOfTicket; i++)
-			cout << "\n\t\t" << violationRecord[i];
+			cout << "\n\t\t" << i + 1 << " " << violationRecord[i];
 	}
 
 	cout << "\n\n";
 }
 
+
 void LicensePlate::addViolation(Ticket type)
 {
-	violationRecord[numOfTicket] = type;
+	violationRecord.push_back(type);
 	numOfTicket++;
 }
 
+
+void LicensePlate::displayTicket()
+{
+	if (numOfTicket == 0)
+		cout << "\n\t\tNo Violation";
+	else
+	{
+		for (int i = 0; i < numOfTicket; i++)
+			cout << "\n\t\t" << i + 1 << " " << violationRecord[i];
+	}
+}
+
+int LicensePlate::getNumOfTicket() const
+{
+	return numOfTicket;
+}
+
+void LicensePlate::removeTicket(int index)
+{
+	violationRecord.erase(violationRecord.begin() + index);
+	numOfTicket--;
+}

@@ -1,5 +1,7 @@
 #pragma once
 #include <iostream>
+#include <vector>
+
 #include "Ticket.h"
 
 using namespace std;
@@ -9,7 +11,7 @@ class LicensePlate
 private:
 	string plateNumber;
     string ownerName;
-    Ticket violationRecord[100] = {};
+    vector<Ticket> violationRecord = {};
     int numOfTicket;
 
 public:
@@ -25,16 +27,21 @@ public:
     void setOwnerName(const string& name);
     // Mutator for owner name
 
-    string getOwerName() const;
+    string getOwnerName() const;
     // Accesser for owner name
 
-    bool isValid() const; 
-    // Method to check if the plate number is valid
+    int getNumOfTicket() const;
+    // Display number of ticket the license has
 
-    void display();
+    void displayInformation();
     // Display the information of the license plate
+
+    void displayTicket();
+    // Display all the ticket information of the license plate
 
     void addViolation(Ticket type);
     // Add Violation to the ticket
+
+    void removeTicket(int index);
 };
 
