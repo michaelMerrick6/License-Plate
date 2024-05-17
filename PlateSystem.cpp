@@ -78,26 +78,122 @@ LicensePlate PlateSystem::valueAt(string key)
 }
 
 
-
 void PlateSystem::saveToFile(const string& filename)
 {
-    ofstream file(filename);
+	ofstream file(filename);
+	if (!file.is_open())
+	{
+		cout << "\n\tError: Unable to create or open file " << filename;
+		return;
+	}
+
+	for (const auto& pair : dataBase)
+	{
+		const LicensePlate& plate = pair.second;
+		file << "\tLicense number  : " << plate.getPlateNumber() << "\n";
+		file << "\tOwner name      : " << plate.getOwnerName() << "\n";
+		file << "\tViolation Record: " << plate.getNumOfTicket() << "\n";
+
+		// Write each violation record to the file
+		const vector<Ticket>& violations = plate.getViolationRecord();
+		for (const Ticket& violation : violations)
+		{
+			file << "\t\t- " << violation << "\n";
+		}
+
+		file << "\n";
+	}
+
+	file.close();
+}
+
+
+// Default value for unknown violation type
+const ViolationType DEFAULT_VIOLATION_TYPE = ViolationType::SPEEDING;
+
+void PlateSystem::loadFromFile(const string& filename)
+{
+    ifstream file(filename);
     if (!file.is_open())
     {
-        cout << "\n\tError: Unable to create or open file " << filename;
+        cout << "\n\tError: Unable to open file " << filename;
         return;
     }
 
-    for (const auto& pair : dataBase)
+    string line;
+    string plateNumber;
+    string ownerName;
+    int numOfTickets;
+    string violationType;
+
+    while (getline(file, line))
     {
-        const LicensePlate& plate = pair.second;
-        file << "\tLicense number  : " << plate.getPlateNumber() << "\n";
-        file << "\tOwner name      : " << plate.getOwnerName() << "\n";
-        file << "\tViolation Record: " << plate.getNumOfTicket() << "\n";
-        file << "\n";
+        if (line.find("License number") != string::npos)
+        {
+            // Extract license number
+            plateNumber = line.substr(line.find(":") + 2);
+        }
+        else if (line.find("Owner name") != string::npos)
+        {
+            // Extract owner name
+            ownerName = line.substr(line.find(":") + 2);
+        }
+        else if (line.find("Violation Record") != string::npos)
+        {
+            // Extract number of tickets
+            numOfTickets = stoi(line.substr(line.find(":") + 2));
+
+            // Create a new LicensePlate object
+            LicensePlate plate;
+            plate.setPlateNumber(plateNumber);
+            plate.setOwnerName(ownerName);
+
+            // Parse violation records
+            for (int i = 0; i < numOfTickets; ++i)
+            {
+                getline(file, violationType);
+                violationType = violationType.substr(violationType.find("-") + 2); // Extract violation type
+
+                // Convert violation string to ViolationType enum
+                ViolationType violationEnum = DEFAULT_VIOLATION_TYPE; // Default to SPEEDING
+                if (violationType == "Speeding") {
+                    violationEnum = ViolationType::SPEEDING;
+                }
+                else if (violationType == "Running Red Light") {
+                    violationEnum = ViolationType::RUNNING_RED_LIGHT;
+                }
+                else if (violationType == "Driving Under Influence") {
+                    violationEnum = ViolationType::DRIVING_UNDER_INFLUENCE;
+                }
+                else if (violationType == "Parking in Fire Lane") {
+                    violationEnum = ViolationType::PARKING_FIRE_LANE;
+                }
+                else if (violationType == "Parking in Handicapped Zone") {
+                    violationEnum = ViolationType::PARKING_HANDICAPPED_ZONE;
+                }
+                else if (violationType == "Parking during Street Sweeping") {
+                    violationEnum = ViolationType::PARKING_STREET_SWEEPING;
+                }
+                else {
+                    violationEnum = DEFAULT_VIOLATION_TYPE; // Default to Speeding
+                }
+               
+
+                // Create a Ticket object with violation type
+                Ticket ticket;
+                ticket.setViolation(violationEnum);
+
+                // Add the Ticket object to the plate
+                plate.addViolation(ticket);
+            }
+
+            // Add the LicensePlate object to the database
+            dataBase[plateNumber] = plate;
+        }
     }
 
     file.close();
 }
+
 
 
