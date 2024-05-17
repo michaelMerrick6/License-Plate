@@ -76,3 +76,28 @@ LicensePlate PlateSystem::valueAt(string key)
 		return dataBase.at(key);
 	}
 }
+
+
+
+void PlateSystem::saveToFile(const string& filename)
+{
+    ofstream file(filename);
+    if (!file.is_open())
+    {
+        cout << "\n\tError: Unable to create or open file " << filename;
+        return;
+    }
+
+    for (const auto& pair : dataBase)
+    {
+        const LicensePlate& plate = pair.second;
+        file << "\tLicense number  : " << plate.getPlateNumber() << "\n";
+        file << "\tOwner name      : " << plate.getOwnerName() << "\n";
+        file << "\tViolation Record: " << plate.getNumOfTicket() << "\n";
+        file << "\n";
+    }
+
+    file.close();
+}
+
+
