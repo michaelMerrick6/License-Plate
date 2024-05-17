@@ -107,9 +107,8 @@ void PlateSystem::saveToFile(const string& filename)
 	file.close();
 }
 
-
 // Default value for unknown violation type
-const ViolationType DEFAULT_VIOLATION_TYPE = ViolationType::SPEEDING;
+const ViolationType DEFAULT_VIOLATION_TYPE = ViolationType::DEFAULT;
 
 void PlateSystem::loadFromFile(const string& filename)
 {
@@ -175,7 +174,7 @@ void PlateSystem::loadFromFile(const string& filename)
                     violationEnum = ViolationType::PARKING_STREET_SWEEPING;
                 }
                 else {
-                    violationEnum = DEFAULT_VIOLATION_TYPE; // Default to Speeding
+                    violationEnum = DEFAULT_VIOLATION_TYPE; // Default
                 }
                
 
@@ -194,6 +193,4 @@ void PlateSystem::loadFromFile(const string& filename)
 
     file.close();
 }
-
-
 
