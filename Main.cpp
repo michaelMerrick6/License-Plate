@@ -430,14 +430,14 @@ void Case6(PlateSystem& obj)
 
 void Case7(PlateSystem& obj) 
 { // Read from file
-    string filename = "C:\\Users\\alber_6h954kk\\OneDrive\\Desktop\\CMPR131\\licenseplate.txt";
+    string filename = inputString("\n\tEnter the file name (include.txt) : ", false);
     obj.loadFromFile(filename);
     cout << "\n\tData loaded successfully from " << filename;
 }
 
 void Case8(PlateSystem& obj) 
 { // Save to file
-    string filename = "C:\\Users\\alber_6h954kk\\OneDrive\\Desktop\\CMPR131\\licenseplate.txt";
+    string filename = inputString("\n\tEnter the file name (include.txt) : ", false);
     obj.saveToFile(filename);
     cout << "\n\tData saved successfully to " << filename;
 }
