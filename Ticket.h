@@ -4,6 +4,9 @@
 using namespace std;
 
 
+
+
+//ticket.h
 enum class ViolationType : uint8_t {
     SPEEDING,
     RUNNING_RED_LIGHT,
@@ -28,4 +31,6 @@ public:
 
     friend ostream& operator<<(ostream& out, const Ticket& obj);
 };
+
+
 
