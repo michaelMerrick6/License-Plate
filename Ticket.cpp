@@ -4,28 +4,28 @@
 // Default Constructor
 Ticket::Ticket()
 {
-	violation = ViolationType::SPEEDING;
+    violation = ViolationType::SPEEDING;
 }
 
 
 // Setter for violation
 void Ticket::setViolation(ViolationType newViolation)
 {
-	violation = newViolation;
+    violation = newViolation;
 }
 
 
 // Getter for violation
 ViolationType Ticket::getViolation() const
 {
-	return violation;
+    return violation;
 }
 
 
 // Overloading the << Operator
 ostream& operator<<(ostream& out, const Ticket& obj)
 {
-    switch (obj.violation) 
+    switch (obj.violation)
     {
     case ViolationType::SPEEDING:
         out << "Speeding";
