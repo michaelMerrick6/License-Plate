@@ -10,8 +10,8 @@ using namespace std;
 
 class PlateSystem
 {
-private: 
-	unordered_map<string, LicensePlate> dataBase;	
+private:
+	unordered_map<string, LicensePlate> dataBase;
 	// A hash table structure that store record of all licensePlate 
 
 public:
@@ -45,10 +45,11 @@ public:
 	void updateLicenseInformation(LicensePlate plate, string key);
 	// Update the license number that are already in the dataBase
 
-	//void saveToFile() const;
 
-	//void loadFromFile();
+	void saveToFile(const string& filename);
+
+
+	void loadFromFile(const string& filename);
 
 
 };
-
