@@ -118,6 +118,9 @@ void editTicket(LicensePlate& obj)
 
     do {
         system("cls");
+        cout << "\n\tLicense plate : " << obj.getPlateNumber();
+        cout << "\n\tOwner name    : " << obj.getOwnerName();
+        cout << "\n\t" << string(85, char(196));
         cout << "\n\t1. Add ticket";
         cout << "\n\t2. Remove ticket";
         cout << "\n\t3. Check ticket";
@@ -154,7 +157,9 @@ string licensePattern()
 
     do {
         // Prompt for license plate
-        input = inputString("\n\tEnter the License    : ", true);
+        cout << "\n\t**California Plate Only** - Format: 0AAA000";
+        cout << "\n\t" << string(85, char(196));
+        input = inputString("\n\tEnter the License plate  : ", true);
 
         // Convert to uppercase
         transform(input.begin(), input.end(), input.begin(), ::toupper);
@@ -274,6 +279,7 @@ void Case2(PlateSystem& obj)
         return;
     }
 
+    system("cls");
     string plate = licensePattern();
 
     if (!obj.searchPlate(plate))
@@ -289,6 +295,9 @@ void Case2(PlateSystem& obj)
 
     do {
         system("cls");
+        cout << "\n\tLicense plate : " << user.getPlateNumber();
+        cout << "\n\tOwner name    : " << user.getOwnerName();        
+        cout << "\n\t" << string(85, char(196));
         cout << "\n\t1. Update Owner Name";
         cout << "\n\t2. Update Violation";
         cout << "\n\t" << string(85, char(196));
@@ -352,6 +361,7 @@ void Case3(PlateSystem& obj)
 
     LicensePlate user;
 
+    system("cls");
     string plate = licensePattern();
 
     // Set the information of License object
@@ -376,6 +386,7 @@ void Case4(PlateSystem& obj)
         return;
     }
 
+    system("cls");
     obj.displayAll();
 }
 
@@ -393,7 +404,7 @@ void Case5(PlateSystem& obj)
     if (obj.searchPlate(plate))
     {
         obj.deletePlate(plate);
-        cout << "\n\tSuccesfullt delete license information";
+        cout << "\n\tSuccesfully delete license information";
     }
     else
     {
@@ -413,17 +424,20 @@ void Case6(PlateSystem& obj)
     }
 
     obj.deleteAll();
-    cout << "\n\tSuccesfullt delete all license information";
+    cout << "\n\tSuccesfully delete all license information";
 
 }
 
-void Case7(PlateSystem& obj) { // Read from file
+void Case7(PlateSystem& obj) 
+{ // Read from file
     string filename = "C:\\Users\\alber_6h954kk\\OneDrive\\Desktop\\CMPR131\\licenseplate.txt";
     obj.loadFromFile(filename);
     cout << "\n\tData loaded successfully from " << filename;
 }
 
-void Case8(PlateSystem& obj) { // Save to file
+void Case8(PlateSystem& obj) 
+{ // Save to file
     string filename = "C:\\Users\\alber_6h954kk\\OneDrive\\Desktop\\CMPR131\\licenseplate.txt";
     obj.saveToFile(filename);
     cout << "\n\tData saved successfully to " << filename;
+}
