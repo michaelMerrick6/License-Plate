@@ -9,7 +9,7 @@ using namespace std;
 class LicensePlate
 {
 private:
-	string plateNumber;
+    string plateNumber;
     string ownerName;
     vector<Ticket> violationRecord = {};
     int numOfTicket;
@@ -18,10 +18,15 @@ public:
     LicensePlate();
     // Default constructor    // Default constructor
 
-    void setPlateNumber(const string& plate); 
+  // Constructor with parameters for plate number and owner name
+    LicensePlate(const string& plate, const string& name);
+
+
+
+    void setPlateNumber(const string& plate);
     // Mutator for plateNumber
 
-    string getPlateNumber() const; 
+    string getPlateNumber() const;
     // Accesser for plateNumber
 
     void setOwnerName(const string& name);
@@ -33,7 +38,7 @@ public:
     int getNumOfTicket() const;
     // Display number of ticket the license has
 
-    void displayInformation();
+    void displayInformation() const; 
     // Display the information of the license plate
 
     void displayTicket();
@@ -43,5 +48,11 @@ public:
     // Add Violation to the ticket
 
     void removeTicket(int index);
+
+    const vector<Ticket>& getViolationRecord() const;
+    // Accessor for violationRecord
+
 };
+
+
 
