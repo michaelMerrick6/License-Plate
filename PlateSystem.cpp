@@ -87,7 +87,7 @@ const ViolationType DEFAULT_VIOLATION_TYPE = ViolationType::DEFAULT;
 
 void PlateSystem::loadFromFile(const string& filename)
 {
-string filename = filename + ".txt";
+filename == filename + ".txt";
     ifstream file(filename);
     if (!file.is_open())
     {
@@ -176,7 +176,7 @@ string filename = filename + ".txt";
 
 void PlateSystem::saveToFile(const string& filename)
 {
-	    string filename = filename + ".txt";
+	filename == filename + ".txt";
 	ofstream file(filename);
 	if (!file.is_open())
 	{
