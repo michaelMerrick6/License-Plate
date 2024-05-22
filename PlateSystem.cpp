@@ -90,7 +90,7 @@ void PlateSystem::loadFromFile(const string& filename)
     ifstream file(filename);
     if (!file.is_open())
     {
-        cout << "\n\tError: Unable to open file \"" << filename << ".txt\"";
+        cout << "\n\tError: Unable to open file " << filename;
         return;
     }
 
@@ -166,7 +166,7 @@ void PlateSystem::loadFromFile(const string& filename)
         }
     }
 
-    cout << "\n\tData loaded successfully from \"" << filename << ".txt\"";
+    cout << "\n\tData loaded successfully from " << filename;
 	
     file.close();
 }
@@ -179,7 +179,7 @@ void PlateSystem::saveToFile(const string& filename)
 	ofstream file(filename);
 	if (!file.is_open())
 	{
-		cout << "\n\tError: Unable to create or open file \"" << filename << ".txt\"";
+		cout << "\n\tError: Unable to create or open file " << filename;
 		return;
 	}
 
@@ -200,7 +200,7 @@ void PlateSystem::saveToFile(const string& filename)
 		file << "\n";
 	}
 
-	cout << "\n\tData saved successfully to \"" << filename << ".txt\"";
+	cout << "\n\tData saved successfully to " << filename;
 
 	file.close();
 }
