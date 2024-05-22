@@ -430,14 +430,12 @@ void Case6(PlateSystem& obj)
 
 void Case7(PlateSystem& obj) 
 { // Read from file
-    string filename = inputString("\n\tEnter the file name (include.txt) : ", false);
+    string filename = inputString("\n\tEnter the file name (not include.txt) : ", false);
     obj.loadFromFile(filename);
-    cout << "\n\tData loaded successfully from " << filename;
 }
 
 void Case8(PlateSystem& obj) 
 { // Save to file
-    string filename = inputString("\n\tEnter the file name (include.txt) : ", false);
+    string filename = inputString("\n\tEnter the file name (not include.txt) : ", false);
     obj.saveToFile(filename);
-    cout << "\n\tData saved successfully to " << filename;
 }
