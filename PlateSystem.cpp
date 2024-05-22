@@ -1,4 +1,7 @@
+
 #include "PlateSystem.h"
+#include <string> // Include this for getline function
+
 
 void PlateSystem::addPlate(LicensePlate plate)
 {
@@ -36,7 +39,7 @@ void PlateSystem::displayPlate(string plate)
 void PlateSystem::displayAll()
 {
 	for (auto it = dataBase.begin(); it != dataBase.end(); it++)
-		it->second.displayInformation();		
+		it->second.displayInformation();
 }
 
 
@@ -78,34 +81,6 @@ LicensePlate PlateSystem::valueAt(string key)
 }
 
 
-void PlateSystem::saveToFile(const string& filename)
-{
-	ofstream file(filename);
-	if (!file.is_open())
-	{
-		cout << "\n\tError: Unable to create or open file " << filename;
-		return;
-	}
-
-	for (const auto& pair : dataBase)
-	{
-		const LicensePlate& plate = pair.second;
-		file << "\tLicense number  : " << plate.getPlateNumber() << "\n";
-		file << "\tOwner name      : " << plate.getOwnerName() << "\n";
-		file << "\tViolation Record: " << plate.getNumOfTicket() << "\n";
-
-		// Write each violation record to the file
-		const vector<Ticket>& violations = plate.getViolationRecord();
-		for (const Ticket& violation : violations)
-		{
-			file << "\t\t- " << violation << "\n";
-		}
-
-		file << "\n";
-	}
-
-	file.close();
-}
 
 // Default value for unknown violation type
 const ViolationType DEFAULT_VIOLATION_TYPE = ViolationType::DEFAULT;
@@ -193,4 +168,38 @@ void PlateSystem::loadFromFile(const string& filename)
 
     file.close();
 }
+
+
+
+
+void PlateSystem::saveToFile(const string& filename)
+{
+	ofstream file(filename);
+	if (!file.is_open())
+	{
+		cout << "\n\tError: Unable to create or open file " << filename;
+		return;
+	}
+
+	for (const auto& pair : dataBase)
+	{
+		const LicensePlate& plate = pair.second;
+		file << "\tLicense number  : " << plate.getPlateNumber() << "\n";
+		file << "\tOwner name      : " << plate.getOwnerName() << "\n";
+		file << "\tViolation Record: " << plate.getNumOfTicket() << "\n";
+
+		// Write each violation record to the file
+		const vector<Ticket>& violations = plate.getViolationRecord();
+		for (const Ticket& violation : violations)
+		{
+			file << "\t\t- " << violation << "\n";
+		}
+
+		file << "\n";
+	}
+
+	file.close();
+}
+
+
 
