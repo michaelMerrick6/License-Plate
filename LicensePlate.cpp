@@ -1,3 +1,4 @@
+
 #include "LicensePlate.h"
 
 LicensePlate::LicensePlate()
@@ -6,6 +7,8 @@ LicensePlate::LicensePlate()
 	ownerName = "Unknown";
 	numOfTicket = 0;
 }
+
+
 
 
 void LicensePlate::setPlateNumber(const string& plate)
@@ -32,12 +35,12 @@ string LicensePlate::getOwnerName() const
 }
 
 
-void LicensePlate::displayInformation()
+void LicensePlate::displayInformation() const
 {
 	cout << "\n\tLicense number  : " << plateNumber;
 	cout << "\n\tOwner name      : " << ownerName;
 	cout << "\n\tViolation Record: ";
-	
+
 	if (numOfTicket == 0)
 		cout << "\n\t\tNo Violation";
 	else
@@ -78,3 +81,9 @@ void LicensePlate::removeTicket(int index)
 	violationRecord.erase(violationRecord.begin() + index);
 	numOfTicket--;
 }
+
+const vector<Ticket>& LicensePlate::getViolationRecord() const
+{
+	return violationRecord;
+}
+
