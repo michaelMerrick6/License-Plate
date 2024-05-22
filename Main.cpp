@@ -16,7 +16,7 @@ void Case3(PlateSystem& obj);   // Look up license
 void Case4(PlateSystem& obj);   // Display all license in the system 
 void Case5(PlateSystem& obj);   // Remove a license
 void Case6(PlateSystem& obj);   // Delete all license in the system
-void Case7(PlateSystem& obj);   
+void Case7(PlateSystem& obj);
 void Case8(PlateSystem& obj);
 
 void editTicket(LicensePlate& obj);
@@ -32,9 +32,9 @@ string licensePattern();        // Check if the license is in the format 0AAA000
 
 
 int main()
-{  
+{
     PlateSystem Container;
-    
+
     do
     {
         switch (menuOption(Container))
@@ -46,8 +46,8 @@ int main()
         case 4: Case4(Container); break;
         case 5: Case5(Container); break;
         case 6: Case6(Container); break;
-        //case 7: Case7(Container); break;
-        //case 8: Case8(Container); break;
+        case 7: Case7(Container); break;
+        case 8: Case8(Container); break;
 
 
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
@@ -55,7 +55,7 @@ int main()
         cout << "\n";
         system("pause");
     } while (true);
-    
+
     return EXIT_SUCCESS;
 }
 
@@ -75,21 +75,21 @@ int menuOption(PlateSystem& obj)
     cout << "\n\t\t5. Remove license plate";
     cout << "\n\t\t6. Remove all license plate";
     cout << "\n\t" << string(85, char(196));
-    cout << "\n\t\t7. Read from fife";
+    cout << "\n\t\t7. Read from file";
     cout << "\n\t\t8. Save to file";
     cout << "\n\t" << string(85, char(196));
     cout << "\n\t\t0. Exit";
     cout << "\n\t" << string(85, char(205));
 
-    return inputInteger("\n\t\tOption: ", 0, 7);
+    return inputInteger("\n\t\tOption: ", 0, 8);
 }
 
 
 // Add the license plate to the system 
-void Case1(PlateSystem& obj) 
+void Case1(PlateSystem& obj)
 {
     system("cls");
-    
+
     LicensePlate user;
 
     string plate = licensePattern();
@@ -108,14 +108,14 @@ void Case1(PlateSystem& obj)
     {
         cout << "\n\tThe license is already in record";
     }
-    
+
 }
 
 // Add Violation to the license
 void editTicket(LicensePlate& obj)
 {
     int choice;
-    
+
     do {
         system("cls");
         cout << "\n\t1. Add ticket";
@@ -129,7 +129,7 @@ void editTicket(LicensePlate& obj)
 
         switch (choice)
         {
-        case 1: addTicketCase(obj);break;
+        case 1: addTicketCase(obj); break;
         case 2: removeTicketCase(obj); break;
         case 3: checkTicketCase(obj); break;
         case 0: return;
@@ -172,7 +172,7 @@ string licensePattern()
 void addTicketCase(LicensePlate& obj)
 {
     system("cls");
-   
+
     cout << "\n\tChoose violation";
     cout << "\n\t" << string(85, char(205));
     cout << "\n\t1. Speeding";
@@ -182,7 +182,7 @@ void addTicketCase(LicensePlate& obj)
     cout << "\n\t5. Parking during Street wipe";
     cout << "\n\t6. Parking Fire lane";
     cout << "\n\t" << string(85, char(205));
-    int choice = inputInteger("\n\tOption: ",1,6);
+    int choice = inputInteger("\n\tOption: ", 1, 6);
 
     Ticket ticket;
 
@@ -281,7 +281,7 @@ void Case2(PlateSystem& obj)
         cout << "\n\tThe license is not on dataBase";
         return;
     }
-    
+
     // Assign the value of license to user
     LicensePlate user = obj.valueAt(plate);
 
@@ -357,14 +357,14 @@ void Case3(PlateSystem& obj)
     // Set the information of License object
     user.setPlateNumber(plate);
 
-   if (obj.searchPlate(plate))
-   {
-       obj.displayPlate(user.getPlateNumber());
-   }
-   else
-   {
+    if (obj.searchPlate(plate))
+    {
+        obj.displayPlate(user.getPlateNumber());
+    }
+    else
+    {
         cout << "\n\tThe license is not on dataBase";
-   }    
+    }
 }
 
 // Display all license in the system
@@ -416,3 +416,14 @@ void Case6(PlateSystem& obj)
     cout << "\n\tSuccesfullt delete all license information";
 
 }
+
+void Case7(PlateSystem& obj) { // Read from file
+    string filename = "C:\\Users\\alber_6h954kk\\OneDrive\\Desktop\\CMPR131\\licenseplate.txt";
+    obj.loadFromFile(filename);
+    cout << "\n\tData loaded successfully from " << filename;
+}
+
+void Case8(PlateSystem& obj) { // Save to file
+    string filename = "C:\\Users\\alber_6h954kk\\OneDrive\\Desktop\\CMPR131\\licenseplate.txt";
+    obj.saveToFile(filename);
+    cout << "\n\tData saved successfully to " << filename;
