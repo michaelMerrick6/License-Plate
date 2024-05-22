@@ -87,7 +87,6 @@ const ViolationType DEFAULT_VIOLATION_TYPE = ViolationType::DEFAULT;
 
 void PlateSystem::loadFromFile(const string& filename)
 {
-filename == filename + ".txt";
     ifstream file(filename);
     if (!file.is_open())
     {
@@ -167,7 +166,8 @@ filename == filename + ".txt";
         }
     }
 
-	cout << "\n\tData loaded successfully from \"" << filename << ".txt\"";
+    cout << "\n\tData loaded successfully from \"" << filename << ".txt\"";
+	
     file.close();
 }
 
@@ -176,7 +176,6 @@ filename == filename + ".txt";
 
 void PlateSystem::saveToFile(const string& filename)
 {
-	filename == filename + ".txt";
 	ofstream file(filename);
 	if (!file.is_open())
 	{
@@ -201,7 +200,7 @@ void PlateSystem::saveToFile(const string& filename)
 		file << "\n";
 	}
 
-	    cout << "\n\tData saved successfully to \"" << filename << ".txt\"";
+	cout << "\n\tData saved successfully to \"" << filename << ".txt\"";
 
 	file.close();
 }
