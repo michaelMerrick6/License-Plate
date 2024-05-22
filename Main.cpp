@@ -430,12 +430,14 @@ void Case6(PlateSystem& obj)
 
 void Case7(PlateSystem& obj) 
 { // Read from file
-    string filename = inputString("\n\tEnter the file name (not include.txt) : ", false);
+    string inputfilename = inputString("\n\tEnter the file name (not include.txt) : ", false);
+    string filename = inputfilename + ".txt";
     obj.loadFromFile(filename);
 }
 
 void Case8(PlateSystem& obj) 
 { // Save to file
-    string filename = inputString("\n\tEnter the file name (not include.txt) : ", false);
+    string inputfilename = inputString("\n\tEnter the file name (not include.txt) : ", false);
+    string filename = inputfilename + ".txt";
     obj.saveToFile(filename);
 }
