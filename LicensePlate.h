@@ -15,11 +15,20 @@ private:
     int numOfTicket;
 
 public:
+//default constructor
     LicensePlate();
-    // Default constructor    // Default constructor
-
+      
   // Constructor with parameters for plate number and owner name
     LicensePlate(const string& plate, const string& name);
+
+ // Copy constructor
+ LicensePlate(const LicensePlate& other);
+
+ // Copy assignment operator
+ LicensePlate& operator=(const LicensePlate& other);
+
+ // Destructor
+ ~LicensePlate();
 
 
 
