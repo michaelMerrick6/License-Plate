@@ -1,6 +1,29 @@
 
 #include "LicensePlate.h"
 
+
+// Copy constructor
+LicensePlate::LicensePlate(const LicensePlate& other)
+	: plateNumber(other.plateNumber), ownerName(other.ownerName), violationRecord(other.violationRecord), numOfTicket(other.numOfTicket) {}
+
+// Copy assignment operator
+LicensePlate& LicensePlate::operator=(const LicensePlate& other)
+{
+	if (this == &other)
+	{
+		return *this;
+	}
+	plateNumber = other.plateNumber;
+	ownerName = other.ownerName;
+	violationRecord = other.violationRecord;
+	numOfTicket = other.numOfTicket;
+	return *this;
+}
+
+// Destructor
+LicensePlate::~LicensePlate() {}
+
+
 LicensePlate::LicensePlate()
 {
 	plateNumber = "0000AAA";
