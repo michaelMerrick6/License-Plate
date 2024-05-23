@@ -3,6 +3,29 @@
 #include <string> // Include this for getline function
 
 
+
+// Default constructor
+PlateSystem::PlateSystem() {}
+
+// Copy constructor
+PlateSystem::PlateSystem(const PlateSystem& other)
+    : dataBase(other.dataBase) {}
+
+// Copy assignment operator
+PlateSystem& PlateSystem::operator=(const PlateSystem& other)
+{
+    if (this == &other)
+    {
+        return *this;
+    }
+    dataBase = other.dataBase;
+    return *this;
+}
+
+// Destructor
+PlateSystem::~PlateSystem() {}
+
+
 void PlateSystem::addPlate(LicensePlate plate)
 {
 	// If the license number is alreay in the databse, display the warning
