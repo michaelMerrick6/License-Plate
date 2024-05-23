@@ -15,6 +15,19 @@ private:
 	// A hash table structure that store record of all licensePlate 
 
 public:
+
+	//default constructor
+	PlateSystem();
+
+	// Copy constructor
+	PlateSystem(const PlateSystem& other);
+
+	// Copy assignment operator
+	PlateSystem& operator=(const PlateSystem& other);
+
+	// Destructor
+	~PlateSystem();
+	
 	void addPlate(LicensePlate plate);
 	// Add new licnese plate number and its associated information
 
